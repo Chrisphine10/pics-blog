@@ -8,10 +8,12 @@ class BlogsController < ApplicationController
 
       @blogs = Blog.where(:category_id => @cate)
 
+    elsif !params[:search].nil?
+      @blogs = Blog.search(params[:search])
     else
-      @blogs = Blog.all
-    end
+    @blogs = Blog.all
 
+    end
   end
 
   def show
@@ -33,7 +35,6 @@ class BlogsController < ApplicationController
 
   def edit
     @blog = Blog.find(params[:id])
-
   end
 
   def update
