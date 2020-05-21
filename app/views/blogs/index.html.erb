@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-2">
+
+<div class="card mt-4">
+  <div class="card-header">
+Category
+  </div>
+<ul class="list-group">
+  <% @categories.each do |category| %>
+  <li class="list-group-item d-flex justify-content-between align-item-center">
+              <%= link_to category.category, blogs_path(:cate => category.id) %>
+    <span class="badge badge-primary badge-pill"> <%= category.blogs.count %></span>
+    </li>
+        <% end %>
+</ul>
+
+</div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="row">
+      <% @blogs.each do |blog| %>
+        <div class="col-md-4">
+
+          <div class="card mt-3">
+            <%= image_tag("default1.png", class: "card-img-top", alt: "Card image cap") %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to blog.title, blog_path(blog.id) %></h5>
+              <p class="card-text"><%= truncate(blog.content, length: 50) %></p>
+            </div>
+          </div>
+
+        </div>
+
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
