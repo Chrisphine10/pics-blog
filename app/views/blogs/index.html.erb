@@ -1,39 +1,61 @@
-<div class="container">
+
+<style media="screen">
+  ::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    display: hidden;
+}
+
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    display: hidden;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <span class="nav mb-4">Categories</span>
+  <ul class="list-inline navbar-brand" style="overflow-x:scroll; margin-bottom: 10px;">
+      <% @categories.each do |category| %>
+      <li class="list-inline-item">
+        <%= link_to category.category, blogs_path(:cate => category.id), style: 'margin: 10px;font-size: 16px;color: grey;text-decoration:none' %>
+      </li>
+      <% end %>
+  </ul>
+</nav>
+<div class="test" style="margin-left: 2%;margin-right: 2%;">
   <div class="row">
 
-    <div class="col-md-2">
-
-<div class="card mt-4">
-  <div class="card-header">
-Category
-  </div>
-<ul class="list-group">
-  <% @categories.each do |category| %>
-  <li class="list-group-item d-flex justify-content-between align-item-center">
-              <%= link_to category.category, blogs_path(:cate => category.id) %>
-    <span class="badge badge-primary badge-pill"> <%= category.blogs.count %></span>
-    </li>
-        <% end %>
-</ul>
-
-</div>
-    </div>
-
-    <div class="col-md-10">
+    <div class="col-lg-12">
       <div class="row">
       <% @blogs.each do |blog| %>
-        <div class="col-md-4">
+        <div class="col-md-6 col-sm-12 col-lg-4">
 
-          <div class="card mt-3">
-            <%= image_tag("default1.png", class: "card-img-top", alt: "Card image cap") %>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to blog.title, blog_path(blog.id) %></h5>
-              <p class="card-text"><%= truncate(blog.content, length: 50) %></p>
-            </div>
+          <div class="mt-3">
+
+                  <span class="badge badge-secondary">Views: 12</span>
+
+              <div data-toggle="modal" data-target="#mynewpost">
+            <%= image_tag("test3.jpg", alt: "Card image cap", style: 'height:auto;width:100%;', ondoubleclick: '') %>
+              </div>
+
+              <div class="modal fade" id="mynewpost" role="dialog" style="background:white;" aria-labelledby="myModalLabel" aria-hidden>
+
+                <div class="modal-dialog">
+
+                <div class="dialog" style="width:400px; background:red;">
+                  <%= image_tag("test3.jpg", alt: "Card image cap", style: 'height:auto;width:80%;') %>
+                </div>
+
+                </div>
+
+              </div>
           </div>
 
         </div>
-
        <% end %>
       </div>
     </div>
